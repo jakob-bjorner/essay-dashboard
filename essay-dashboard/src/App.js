@@ -13,6 +13,11 @@ function App() {
 	}
 	return (
 		<div className="App">
+			<div className="essay-header">
+				<div className="title">
+				Essay Dashboard
+			</div>
+			</div>
 			<div className="text-box">
 				<div className="text-input-output">
 					<form>
