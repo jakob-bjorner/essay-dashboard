@@ -3,6 +3,23 @@
 	height: 100vh;
 	width: 100vw;
 }
+.essay-header {
+	width: 100vw;
+	height: 60px;
+	background-color: #009FF9;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: left;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+.title {
+	flex: auto;
+}
 
 .App-header {
 	background-color: #282c34;
