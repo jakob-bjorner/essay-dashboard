@@ -1,14 +1,70 @@
 .App {
-  text-align: center;
+	text-align: center;
+	height: 100vh;
+	width: 100vw;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.text-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+}
+
+.text-box > * {
+	flex: auto;
+}
+.text-input-output {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.text-input-output > form > textarea {
+	font-size: 30px;
+	font-family: 'Open Sans';
+	outline: none;
+	border: 2px solid rgb(143, 143, 143);
+	border-radius: 20px;
+	height: 30vh;
+	width: 30vw;
+	box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+		rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+	padding: 20px;
+	transition: 0.5s ease-in-out;
+}
+
+.text-input-output > form > textarea:hover {
+	border: 2px solid rgb(74, 74, 74);
+	transition: 0.5s ease-in-out;
+}
+
+.text-input-output > button {
+	margin: 25px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+	transition: 0.2s ease-in-out;
+	border: 2px solid white;
+}
+
+.text-input-output > button:hover {
+	border: 2px solid black;
+	transition: 0.2s ease-in-out;
+}
+
+.arrow {
+	width: 2vw;
+	margin: 10px;
 }
