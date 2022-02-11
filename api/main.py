@@ -50,7 +50,7 @@ class RephraseRequestResource(Resource):
 		rephrase_request = RephraseRequest.query.get_or_404(request_id)
 
 		if 'rephrased' in request.json:
-			rephrase_request.rephrased = request.sjon['rephrased']
+			rephrase_request.rephrased = request.json['rephrased']
 		if 'original' in request.json:
 			rephrase_request.original = request.json['original']
 		if 'accepted' in request.json:

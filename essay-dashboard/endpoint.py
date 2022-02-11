@@ -25,6 +25,11 @@ def create():
     somedata.append(newentry)
     return jsonify({'created': newentry})
 
+# this does not work as likely intended. When making some request in http, you need to 
+# send one of the following: GET, POST, HEAD, PUT, DELETE. All being somewhat explanitory.
+# head I just learned acts as a useless get, by just checking if a resource is responsive.
+# for this one we would probably want to use the get method, but as it is in use, we would
+# likely want to change the route being used to avoid conflict.
 @app.route("/data/<int:ID>",  methods = ['MORE'])
 def longer(ID):
     somedata[ID]["lines"] = str(int(somedata[ID]["lines"]) + 10)
