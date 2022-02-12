@@ -1,6 +1,6 @@
 import './App.css';
 import arrow from './arrow.png';
-import React, { useState, setState } from 'react';
+import React, { useState, setState, useRef, useEffect } from 'react';
 
 function App() {
 	const [input, setInput] = useState('');
@@ -18,7 +18,7 @@ function App() {
 				Essay Dashboard
 			</div>
 			</div>
-			<div className="text-box">
+			<div className="box">
 				<div className="text-input-output">
 					<form>
 						<textarea
@@ -40,6 +40,22 @@ function App() {
 						></textarea>
 					</form>
 				
+				</div>
+				<div className="function-sidebar">
+					<div className="btn-holder">
+					<button className="function-btn">
+						<div className="heading">Rephrase sentences</div>
+						<div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper lobortis justo id laoreet. </div>
+					</button>
+					<button className="function-btn">
+						<div className="heading">Summarize sentences</div>
+						<div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper lobortis justo id laoreet. </div>
+					</button>
+					<button className="function-btn">
+						<div className="heading">Create an outline</div>
+						<div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper lobortis justo id laoreet. </div>
+					</button>
+					</div>
 				</div>
 			</div>
 		</div>
