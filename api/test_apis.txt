@@ -1,0 +1,22 @@
+#### testing the main.py in api
+
+POST http://127.0.0.1:5000/rephrase-requests HTTP/1.1
+content-type: application/json
+
+{
+    "rephrased": "A cat named Tom is owned by Bob.",
+    "accepted": true, 
+    "id": 1, 
+    "original": "Bob has a cat named Tom."
+}
+
+DELETE http://127.0.0.1:5000/rephrase-requests/1 HTTP/1.1
+
+#### testing the endpoint.py in essay-dashboard
+
+DELETE http://127.0.0.1:5000/data/0 HTTP/1.1
+# note that this test breaks the functionality of they python list being used as a database.
+# having some form of checking the id of the item being deleted would be necessary to make it funciton as desired.
+
+MORE http://127.0.0.1:5000/data/0 HTTP/1.1
+HEAD http://127.0.0.1:5000/data/0 HTTP/1.1
