@@ -4,6 +4,24 @@ import React, { useState, setState, useRef, useEffect } from 'react';
 
 function App() {
 	const [input, setInput] = useState('');
+	const [styles, setStyles] = useState([
+		{
+			function_btn: 'function-btn',
+			description: 'description',
+			heading: 'heading',
+		},
+		{
+			function_btn: 'function-btn',
+			description: 'description',
+			heading: 'heading',
+		},
+		{
+			function_btn: 'function-btn',
+			description: 'description',
+			heading: 'heading',
+		},
+	]);
+
 	function handleChange(event) {
 		setInput(event.target.value);
 	}
@@ -11,12 +29,33 @@ function App() {
 		alert(input);
 		event.preventDefault();
 	}
+	var addStyles = (index) => {
+		let newStyles = [...styles];
+		for (let i = 0; i < newStyles.length; i++) {
+			if (i == index) {
+				newStyles[i] = {
+					function_btn: 'active-function-btn',
+					description: 'active-description',
+					heading: 'active-heading',
+				};
+			} else {
+				newStyles[i] = {
+					function_btn: 'function-btn',
+					description: 'description',
+					heading: 'heading',
+				};
+			}
+		}
+		setStyles(newStyles);
+		console.log(newStyles);
+	};
+	useEffect(() => {
+		console.log(styles);
+	}, [styles]);
 	return (
 		<div className="App">
 			<div className="essay-header">
-				<div className="title">
-				Essay Dashboard
-			</div>
+				<div className="title">Essay Dashboard</div>
 			</div>
 			<div className="box">
 				<div className="text-input-output">
@@ -39,22 +78,39 @@ function App() {
 							placeholder="Response..."
 						></textarea>
 					</form>
-				
 				</div>
 				<div className="function-sidebar">
 					<div className="btn-holder">
-					<button className="function-btn">
-						<div className="heading">Rephrase sentences</div>
-						<div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper lobortis justo id laoreet. </div>
-					</button>
-					<button className="function-btn">
-						<div className="heading">Summarize sentences</div>
-						<div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper lobortis justo id laoreet. </div>
-					</button>
-					<button className="function-btn">
-						<div className="heading">Create an outline</div>
-						<div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper lobortis justo id laoreet. </div>
-					</button>
+						<button
+							onClick={() => addStyles(0)}
+							className={styles[0].function_btn}
+						>
+							<div className={styles[0].heading}>Rephrase sentences</div>
+							<div className={styles[0].description}>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+								semper lobortis justo id laoreet.
+							</div>
+						</button>
+						<button
+							onClick={() => addStyles(1)}
+							className={styles[1].function_btn}
+						>
+							<div className={styles[1].heading}>Summarize sentences</div>
+							<div className={styles[1].description}>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+								semper lobortis justo id laoreet.
+							</div>
+						</button>
+						<button
+							onClick={() => addStyles(2)}
+							className={styles[2].function_btn}
+						>
+							<div className={styles[2].heading}>Create an outline</div>
+							<div className={styles[2].description}>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+								semper lobortis justo id laoreet.
+							</div>
+						</button>
 					</div>
 				</div>
 			</div>
