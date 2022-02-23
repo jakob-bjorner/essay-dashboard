@@ -33,6 +33,10 @@ button {
 	flex: auto;
 }
 
+.menu {
+	flex: auto;
+}
+
 .box {
 	display: flex;
 	align-items: center;
