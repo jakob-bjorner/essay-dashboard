@@ -83,6 +83,7 @@ export default function Home() {
 				<button onClick={handleSubmit}>
 					<img src={arrow} className="arrow" alt="arrow"></img>
 				</button>
+				<div className="form-box">
 				<form>
 					<textarea
 						type="text"
@@ -90,6 +91,21 @@ export default function Home() {
 						placeholder="Response..."
 					></textarea>
 				</form>
+				<form>
+					<textarea
+						type="text"
+						className="output"
+						placeholder="Response..."
+					></textarea>
+				</form>
+				<form>
+					<textarea
+						type="text"
+						className="output"
+						placeholder="Response..."
+					></textarea>
+				</form>
+				</div>
 			</div>
 		);
 	}
