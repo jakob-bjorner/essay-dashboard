@@ -9,7 +9,7 @@ import Home from './routes/home';
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}>
+      <Route path="/" element={<Home />}>
         <Route path="home" element={<Home />} />
       </Route>
     </Routes>
