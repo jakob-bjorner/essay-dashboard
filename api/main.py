@@ -40,6 +40,11 @@ class RephraseRequestListResource(Resource):
 		db.session.add(new_request)
 		db.session.commit()
 		return rephrase_request_schema.dump(new_request)
+
+class AcceptedRephraseRequestListResource(Resource):
+	def get(self):
+		acceptedRephraseRequests = RephraseRequest.query.filter(RephraseRequest.accepted).all()
+		return rephrase_requests_schema.dump(acceptedRephraseRequests)
 	
 class RephraseRequestResource(Resource):
 	def get(self, request_id):
@@ -65,6 +70,7 @@ class RephraseRequestResource(Resource):
 		db.session.commit()
 		return '', 204
 
+api.add_resource(AcceptedRephraseRequestListResource, '/rephrase-requests/accepted')
 api.add_resource(RephraseRequestListResource, '/rephrase-requests')
 api.add_resource(RephraseRequestResource, '/rephrase-requests/<int:request_id>')
 
