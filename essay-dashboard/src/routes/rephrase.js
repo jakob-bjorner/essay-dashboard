@@ -1,8 +1,8 @@
 import arrow from '../arrow.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
 
-export default function Home() {
-    const [input, setInput] = useState('');
+export default function Rephrase() {
+  const [input, setInput] = useState('');
 
 	function handleChange(event) {
 		setInput(event.target.value);
@@ -39,5 +39,5 @@ export default function Home() {
 	}
 	return (
 		<IOInterface />
-	);    
+	);      
 }
