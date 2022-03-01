@@ -22,7 +22,7 @@ Listed below are six tools we can implement using gpt3
 
 6. Grammar correction tool
     *Corrects grammatically wrong sentences
-
+ 
 Below is a high level description of how the backend database interact with backend gpt3 api code . It lists the step by step process of interaction  between the user and the backend.
 
 A. So the User Asks a Question on frontend:

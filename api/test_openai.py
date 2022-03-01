@@ -147,6 +147,35 @@ def gpt3SummarizeForSecondGrader(message):
 
 #summarize for second grader
 #study notes tool
+
+def gpt3EssayOutline(text):
+  response = openai.Completion.create(
+  engine="text-davinci-001",
+  prompt=f"I am a highly intelligent bot that creates a formal essay outline:\n\n '{text}'", 
+  temperature=0,
+  max_tokens=64,
+  top_p=1.0,
+  frequency_penalty=0.0,
+  presence_penalty=0.0
+)
+return response.choices[0].text
+
+def gpt3GrammarCorrection(text):
+  response = openai.Completion.create(
+  engine="text-davinci-001",
+  prompt=f"I am a highly intelligent bot that corrects sentences to standard English:\n\n '{text}'", 
+  temperature=0,
+  max_tokens=60,
+  top_p=1.0,
+  frequency_penalty=0.0,
+  presence_penalty=0.0
+)
+return response.choices[0].text
+
+
+
+print(gpt3GrammarCorrection("She no went to the market."))
+print(gpt3EssayOutline("Create an outline for an essay about Walt Disney and his contributions to animation:"))
 print(gpt3SummarizeForSecondGrader("Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history."))
 print(gpt3StudyTools("What are the 5 most important facts about modern history?"))
 print(gpt3Rephrase("That was well done"))
