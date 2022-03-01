@@ -1,6 +1,7 @@
 import os
 import openai
 import json
+import requests
 
 from dotenv import load_dotenv
 
@@ -10,7 +11,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 #print("THIS IS THE PRINTED OUT VERSION OF THE API KEY: ")
 #print(openai.api_key)
 
-def gpt3Rephrase(message):
+def gpt3Rephrase(message): # these all will need changed parameters to message, AND acceptedMessages which is formatted correctly
 
   prompt = \
   f"""
@@ -32,6 +33,10 @@ def gpt3Rephrase(message):
     frequency_penalty=0,
     presence_penalty=0
   )
+  #data = requests.get("http://localhost:5000/rephrase-requests")
+  #data_json = data.json()
+
+  #print("type of data")
   response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
   parsed_response = response_dict.text #this still has newlines in it. 
   parsed_response = parsed_response.replace("\n", "")
@@ -62,7 +67,7 @@ def gpt3QA(message):
 
   qmark = "?"
   message = message.replace("?","")
-  print("Checked message: " + message)
+  #print("Checked message: " + message)
   prompt = \
   f"""
   I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with "Unknown".
@@ -101,6 +106,49 @@ def gpt3QA(message):
   parsed_response = parsed_response.replace("\n", "")
 
   return parsed_response
+
+def gpt3StudyTools(message): 
+
+  prompt = \
+  f""" I am a bot designed to help a user study by answering the following question: {message}""" # above message put {parsed_db}
+  response = openai.Completion.create(
+    engine="text-davinci-001",
+    prompt=prompt,
+    temperature=0,
+    max_tokens=60,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0
+  )
+  response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
+  parsed_response = response_dict.text #this still has newlines in it. 
+  parsed_response = parsed_response.replace("\n", "")
+
+  return parsed_response
+
+def gpt3SummarizeForSecondGrader(message): 
+
+  prompt = \
+  f""" Summarize this for a second grader: {message}""" # above message put {parsed_db}
+  response = openai.Completion.create(
+    engine="text-davinci-001",
+    prompt=prompt,
+    temperature=0,
+    max_tokens=60,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0
+  )
+  response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
+  parsed_response = response_dict.text #this still has newlines in it. 
+  parsed_response = parsed_response.replace("\n", "")
+
+  return parsed_response
+
+#summarize for second grader
+#study notes tool
+print(gpt3SummarizeForSecondGrader("Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history."))
+print(gpt3StudyTools("What are the 5 most important facts about modern history?"))
 print(gpt3Rephrase("That was well done"))
 print(gpt3SentenceCompletion("Gone. Reduced to "))
 print(gpt3QA("Who was the first president of the US"))

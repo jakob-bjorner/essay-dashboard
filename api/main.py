@@ -40,6 +40,10 @@ class RephraseRequestListResource(Resource):
 			rephrased=request.json['rephrased'],
 			accepted=request.json['accepted']
 		)
+		#Right here is where we need to make our code to get a list from the db
+		#Then filter based on accepted
+		#Then call gpt3action() 
+		#SELECT original,rephrased FROM [tableName] WHERE accepted = 1;
 		db.session.add(new_request)
 		db.session.commit()
 		return rephrase_request_schema.dump(new_request)
