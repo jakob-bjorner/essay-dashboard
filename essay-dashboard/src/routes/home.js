@@ -20,7 +20,7 @@ export default function Home() {
 						type="text"
 						className="input"
 						placeholder="Type something..."
-						onChange={handleChange}
+						//onChange={handleChange}
 						align="left"
 					></textarea>
 				</form>
