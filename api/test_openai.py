@@ -158,7 +158,7 @@ def gpt3EssayOutline(text):
   frequency_penalty=0.0,
   presence_penalty=0.0
 )
-return response.choices[0].text
+  return response.choices[0].text
 
 def gpt3GrammarCorrection(text):
   response = openai.Completion.create(
@@ -170,7 +170,7 @@ def gpt3GrammarCorrection(text):
   frequency_penalty=0.0,
   presence_penalty=0.0
 )
-return response.choices[0].text
+  return response.choices[0].text
 
 
 
