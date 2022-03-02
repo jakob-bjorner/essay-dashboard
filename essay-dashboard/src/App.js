@@ -1,9 +1,11 @@
 import './App.css';
 import arrow from './arrow.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function App() {
+	let navigate = useNavigate()
+
 	const [input, setInput] = useState('');
 	const [styles, setStyles] = useState([
 		{
@@ -57,7 +59,10 @@ export default function App() {
 	function SidebarButton(props) {
 		return (
 			<button
-				onClick={() => addStyles(props.index)}
+				onClick={() => {
+					addStyles(props.index);
+					navigate(props.path);
+				}}
 				className={styles[props.index].function_btn}
 			>
 				<div className={styles[props.index].heading}>{props.heading}</div>
@@ -109,18 +114,21 @@ export default function App() {
 							heading="Rephrase sentences"
 							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
 								semper lobortis justo id laoreet."
+							path = 'rephrase'
 						/>
 						<SidebarButton
 							index={1}
 							heading="Summarize sentences"
 							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
 								semper lobortis justo id laoreet."
+							path = 'home'
 						/>
 						<SidebarButton
 							index={2}
 							heading="Create an outline"
 							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
 								semper lobortis justo id laoreet."
+							path = 'home'
 						/>
 					</div>
 				</div>

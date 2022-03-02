@@ -14,7 +14,7 @@ export default function Home() {
 
 	function IOInterface(props) {
 		return (
-			<div className="text-input-output">
+			<div className="IObox">
 				<form>
 					<textarea
 						type="text"
