@@ -16,7 +16,7 @@ export default function Home() {
 	}, [input])
 	function IOInterface(props) {
 		return (
-			<div className="text-input-output">
+			<div className="IObox">
 				<form>
 					<textarea
 						ref={inputRef}
@@ -24,8 +24,7 @@ export default function Home() {
 						type="text"
 						className="input"
 						placeholder="Type something..."
-						value={input}
-						onChange={handleChange}
+						//onChange={handleChange}
 						align="left"
 					></textarea>
 				</form>

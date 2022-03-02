@@ -43,7 +43,7 @@ button {
 .box > * {
 	flex: auto;
 }
-.text-input-output {
+.IObox {
 	width: 70vw;
 	padding: 50px;
 	display: flex;
@@ -142,7 +142,7 @@ button {
 	transition: 0.4s ease-in-out;
 }
 
-.text-input-output > form > textarea {
+.IObox > form > textarea {
 	resize: none;
 	font-size: 30px;
 	font-family: 'Open Sans';
@@ -155,13 +155,26 @@ button {
 	transition: 0.5s ease-in-out;
 }
 
-.text-input-output > form > textarea:hover,
-.text-input-output > form > textarea:focus {
+.text-rephrase-out > form > textarea {
+	resize: none;
+	font-size: 30px;
+	font-family: 'Open Sans';
+	outline: none;
+	border: 2px solid rgb(143, 143, 143);
+	border-radius: 20px;
+	height: 19vh;
+	min-width: 27.5vw;
+	padding: 20px;
+	transition: 0.5s ease-in-out;
+}
+
+.IObox > form > textarea:hover,
+.IObox > form > textarea:focus {
 	border: 2px solid rgb(74, 74, 74);
 	transition: 0.5s ease-in-out;
 }
 
-.text-input-output > button {
+.IObox > button {
 	margin: 25px;
 	border-radius: 10px;
 	outline: none;
@@ -171,7 +184,7 @@ button {
 	background-color: white;
 }
 
-.text-input-output > button:hover {
+.IObox > button:hover {
 	border: 2px solid black;
 	transition: 0.2s ease-in-out;
 }
