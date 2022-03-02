@@ -14,9 +14,8 @@ export default function Home() {
 	useEffect(() => {
 		console.log(input);
 	}, [input])
-	function IOInterface(props) {
-		return (
-			<div className="IObox">
+	return (
+		<div className="IObox">
 				<form>
 					<textarea
 						ref={inputRef}
@@ -24,7 +23,7 @@ export default function Home() {
 						type="text"
 						className="input"
 						placeholder="Type something..."
-						//onChange={handleChange}
+						onChange={handleChange}
 						align="left"
 					></textarea>
 				</form>
@@ -39,9 +38,5 @@ export default function Home() {
 					></textarea>
 				</form>
 			</div>
-		);
-	}
-	return (
-		<IOInterface />
 	);    
 }
