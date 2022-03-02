@@ -3,7 +3,7 @@ import React, { useState, setState, useRef, useEffect } from 'react';
 
 export default function Home() {
     const [input, setInput] = useState('');
-
+	const inputRef = useRef(null);
 	function handleChange(event) {
 		setInput(event.target.value);
 	}
@@ -11,15 +11,20 @@ export default function Home() {
 		alert(input);
 		event.preventDefault();
 	}
-
+	useEffect(() => {
+		console.log(input);
+	}, [input])
 	function IOInterface(props) {
 		return (
 			<div className="text-input-output">
 				<form>
 					<textarea
+						ref={inputRef}
+						key="user_name_key"
 						type="text"
 						className="input"
 						placeholder="Type something..."
+						value={input}
 						onChange={handleChange}
 						align="left"
 					></textarea>
