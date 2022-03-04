@@ -10,6 +10,10 @@ export default function Home() {
   }
   function handleSubmit(event) {
     alert(input);
+	// for implementing functionality look into the services folder.
+	// you can model a service using the RephraseService class.
+	// create a service file for doing a put request to the backend.
+	// Once created you can call it from here and display the data to output text!
     event.preventDefault();
   }
   useEffect(() => {
