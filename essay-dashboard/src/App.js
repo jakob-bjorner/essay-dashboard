@@ -6,7 +6,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 export default function App() {
 	let navigate = useNavigate()
 
-	const [input, setInput] = useState('');
 	const [styles, setStyles] = useState([
 		{
 			function_btn: 'function-btn',
@@ -25,17 +24,10 @@ export default function App() {
 		},
 	]);
 
-	function handleChange(event) {
-		setInput(event.target.value);
-	}
-	function handleSubmit(event) {
-		alert(input);
-		event.preventDefault();
-	}
 	var addStyles = (index) => {
 		let newStyles = [...styles];
 		for (let i = 0; i < newStyles.length; i++) {
-			if (i == index) {
+			if (i === index) {
 				newStyles[i] = {
 					function_btn: 'active-function-btn',
 					description: 'active-description',
@@ -70,32 +62,6 @@ export default function App() {
 					{props.description}
 				</div>
 			</button>
-		);
-	}
-
-	function SummarizeSentences(props) {
-		return (
-			<div className="text-input-output">
-				<form>
-					<textarea
-						type="text"
-						className="input"
-						placeholder="Type something..."
-						onChange={handleChange}
-						align="left"
-					></textarea>
-				</form>
-				<button onClick={handleSubmit}>
-					<img src={arrow} className="arrow" alt="arrow"></img>
-				</button>
-				<form>
-					<textarea
-						type="text"
-						className="output"
-						placeholder="Response..."
-					></textarea>
-				</form>
-			</div>
 		);
 	}
 	return (

@@ -3,7 +3,7 @@ import React, { useState, setState, useRef, useEffect } from 'react';
 
 export default function Home() {
     const [input, setInput] = useState('');
-
+	// create some const output variable for holding the state of the output text.
 	function handleChange(event) {
 		setInput(event.target.value);
 	}
@@ -32,6 +32,8 @@ export default function Home() {
 						type="text"
 						className="output"
 						placeholder="Response..."
+						// place the state here of the output, and be sure to put the same
+						// handle change in here as well.
 					></textarea>
 				</form>
 			</div>
