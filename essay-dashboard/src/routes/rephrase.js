@@ -14,26 +14,38 @@ export default function Rephrase() {
 
 	function IOInterface(props) {
 		return (
-			<div className="text-input-output">
+			<div className="IObox">
 				<form>
 					<textarea
 						type="text"
 						className="input"
 						placeholder="Type something..."
-						onChange={handleChange}
+						//onChange={handleChange}
 						align="left"
 					></textarea>
 				</form>
 				<button onClick={handleSubmit}>
 					<img src={arrow} className="arrow" alt="arrow"></img>
 				</button>
-				<form>
-					<textarea
-						type="text"
-						className="output"
-						placeholder="Response..."
-					></textarea>
-				</form>
+        <div className="text-rephrase-out">
+          <form>
+					  <textarea
+						  type="text"
+						  className="output"
+						  placeholder="Response..."
+					  ></textarea>
+            <textarea
+						  type="text"
+						  className="output"
+						  placeholder="Response..."
+					  ></textarea>
+            <textarea
+						  type="text"
+						  className="output"
+						  placeholder="Response..."
+					  ></textarea>
+				  </form>
+        </div>
 			</div>
 		);
 	}
