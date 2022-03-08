@@ -3,12 +3,17 @@ import React, { useState, setState, useRef, useEffect } from 'react';
 
 export default function Home() {
     const [input, setInput] = useState('');
+	// create some const output variable for holding the state of the output text.
 
 	function handleChange(event) {
 		setInput(event.target.value);
 	}
 	function handleSubmit(event) {
 		alert(input);
+		// for implementing functionality look into the services folder.
+		// you can model a service using the RephraseService class.
+		// create a service file for doing a put request to the backend.
+		// Once created you can call it from here and display the data to output text!
 		event.preventDefault();
 	}
 
@@ -32,6 +37,8 @@ export default function Home() {
 						type="text"
 						className="output"
 						placeholder="Response..."
+						// place the state here of the output, and be sure to put the same
+          				// handle change in here as well.
 					></textarea>
 				</form>
 			</div>
