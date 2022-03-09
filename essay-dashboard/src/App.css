@@ -149,7 +149,7 @@ button {
 	outline: none;
 	border: 2px solid rgb(143, 143, 143);
 	border-radius: 20px;
-	height: 70vh;
+	min-height: 70vh;
 	min-width: 27.5vw;
 	padding: 20px;
 	transition: 0.5s ease-in-out;
