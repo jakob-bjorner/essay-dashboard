@@ -2,8 +2,10 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///main.db'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -21,7 +23,7 @@ class RephraseRequest(db.Model):
 class RephraseRequestSchema(ma.Schema):
 	class Meta:
 		fields = ("id", "original", "rephrased", "accepted")
-		model = RephraseRequest 
+		model = RephraseRequest
 
 rephrase_request_schema = RephraseRequestSchema()
 rephrase_requests_schema = RephraseRequestSchema(many=True)
@@ -29,23 +31,35 @@ rephrase_requests_schema = RephraseRequestSchema(many=True)
 class RephraseRequestListResource(Resource):
 	def get(self):
 		rephraseRequests = RephraseRequest.query.all()
+		# print(rephrase_requests_schema.dump(rephraseRequests)) # DON'T COMMIT THESE CHANGES TO GITHUB.
+		# print("Type of this is: ")
+		# print(type(rephrase_requests_schema.dump(rephraseRequests))) # THIS IS OF TYPE "LIST"
 		return rephrase_requests_schema.dump(rephraseRequests)
-	
+
 	def post(self):
 		new_request = RephraseRequest(
 			original=request.json['original'],
 			rephrased=request.json['rephrased'],
 			accepted=request.json['accepted']
 		)
+		#Right here is where we need to make our code to get a list from the db
+		#Then filter based on accepted
+		#Then call gpt3action() 
+		#SELECT original,rephrased FROM [tableName] WHERE accepted = 1;
 		db.session.add(new_request)
 		db.session.commit()
 		return rephrase_request_schema.dump(new_request)
+
+class AcceptedRephraseRequestListResource(Resource):
+	def get(self):
+		acceptedRephraseRequests = RephraseRequest.query.filter(RephraseRequest.accepted).all()
+		return rephrase_requests_schema.dump(acceptedRephraseRequests)
 	
 class RephraseRequestResource(Resource):
 	def get(self, request_id):
 		new_request = RephraseRequest.query.get_or_404(request_id)
 		return rephrase_request_schema.dump(new_request)
-	
+
 	def patch(self, request_id):
 		rephrase_request = RephraseRequest.query.get_or_404(request_id)
 
@@ -55,16 +69,17 @@ class RephraseRequestResource(Resource):
 			rephrase_request.original = request.json['original']
 		if 'accepted' in request.json:
 			rephrase_request.accepted = request.json['accepted']
-		
+
 		db.session.commit()
 		return rephrase_request_schema.dump(rephrase_request)
-	
+
 	def delete(self, request_id):
 		rephrase_request = RephraseRequest.query.get_or_404(request_id)
 		db.session.delete(rephrase_request)
 		db.session.commit()
 		return '', 204
 
+api.add_resource(AcceptedRephraseRequestListResource, '/rephrase-requests/accepted')
 api.add_resource(RephraseRequestListResource, '/rephrase-requests')
 api.add_resource(RephraseRequestResource, '/rephrase-requests/<int:request_id>')
 
