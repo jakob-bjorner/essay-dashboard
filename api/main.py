@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
 from flask_cors import CORS
+from test_openai import *
 
 app = Flask(__name__)
 CORS(app)
@@ -79,6 +80,16 @@ class RephraseRequestResource(Resource):
 		db.session.commit()
 		return '', 204
 
+class NewRephraseRequest(Resource):
+	def post(self):
+		message = request.json['message']
+		a = AcceptedRephraseRequestListResource()
+		accepted = a.get()
+		result = gpt3Rephrase(message, accepted)
+		print(result)
+		return result
+
+api.add_resource(NewRephraseRequest, '/rephrase')
 api.add_resource(AcceptedRephraseRequestListResource, '/rephrase-requests/accepted')
 api.add_resource(RephraseRequestListResource, '/rephrase-requests')
 api.add_resource(RephraseRequestResource, '/rephrase-requests/<int:request_id>')
