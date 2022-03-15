@@ -1,5 +1,6 @@
 import arrow from '../arrow.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
+import {getRephraseRequests} from '../services/RephraseRequestService';
 
 export default function Rephrase() {
   	const [input, setInput] = useState('');
@@ -7,9 +8,13 @@ export default function Rephrase() {
   	function handleChange(event) {
     	setInput(event.target.value);
   	}
-  	function handleSubmit(event) {
+	function handleSubmit(event) {
     	alert(input);
-    	event.preventDefault();
+		console.log('hi')
+		getRephraseRequests().then((data) => {
+			console.log(data)
+		})
+		event.preventDefault();
   	}
 	useEffect(() => {
 		console.log(input);
