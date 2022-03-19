@@ -168,7 +168,7 @@ def gpt3EssayOutline(text):
   top_p=1.0,
   frequency_penalty=0.0,
   presence_penalty=0.0
-)
+	)
   return response.choices[0].text
 
 def gpt3GrammarCorrection(text):
@@ -180,7 +180,7 @@ def gpt3GrammarCorrection(text):
   top_p=1.0,
   frequency_penalty=0.0,
   presence_penalty=0.0
-)
+	)
   return response.choices[0].text
 
 
