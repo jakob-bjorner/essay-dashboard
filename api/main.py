@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
 from flask_cors import CORS
-from test_openai import *
+from test_openai import gpt3Rephrase
 
 app = Flask(__name__)
 CORS(app)
@@ -12,87 +12,90 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 api = Api(app)
 
-class RephraseRequest(db.Model):
+class RephraseLog(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	original = db.Column(db.String(255))
 	rephrased = db.Column(db.String(255))
 	accepted = db.Column(db.Boolean)
 
-	def __repr__(self):
-		return '<Post %s>' % self.title
+class RephraseRequest(db.Model):
+	rephrased = db.Column(db.String(255), primary_key=True)
+	original = db.Column(db.String(255))
+
+class RephraseLogSchema(ma.Schema):
+	class Meta:
+		fields = ("id", "original", "rephrased", "accepted")
+		model = RephraseLog
 
 class RephraseRequestSchema(ma.Schema):
 	class Meta:
-		fields = ("id", "original", "rephrased", "accepted")
+		fields = ["rephrased", "original"]
 		model = RephraseRequest
 
+rephrase_log_schema = RephraseLogSchema()
+rephrase_logs_schema = RephraseLogSchema(many=True)
 rephrase_request_schema = RephraseRequestSchema()
-rephrase_requests_schema = RephraseRequestSchema(many=True)
 
-class RephraseRequestListResource(Resource):
+class RephraseLogListResource(Resource):
 	def get(self):
-		rephraseRequests = RephraseRequest.query.all()
-		# print(rephrase_requests_schema.dump(rephraseRequests)) # DON'T COMMIT THESE CHANGES TO GITHUB.
-		# print("Type of this is: ")
-		# print(type(rephrase_requests_schema.dump(rephraseRequests))) # THIS IS OF TYPE "LIST"
-		return rephrase_requests_schema.dump(rephraseRequests)
+		RephraseLogs = RephraseLog.query.all()
+		return rephrase_logs_schema.dump(RephraseLogs)
 
 	def post(self):
-		new_request = RephraseRequest(
+		new_log = RephraseLog(
 			original=request.json['original'],
 			rephrased=request.json['rephrased'],
 			accepted=request.json['accepted']
 		)
-		#Right here is where we need to make our code to get a list from the db
-		#Then filter based on accepted
-		#Then call gpt3action() 
-		#SELECT original,rephrased FROM [tableName] WHERE accepted = 1;
-		db.session.add(new_request)
+		db.session.add(new_log)
 		db.session.commit()
-		return rephrase_request_schema.dump(new_request)
+		return rephrase_log_schema.dump(new_log)
 
-class AcceptedRephraseRequestListResource(Resource):
+class AcceptedRephraseLogListResource(Resource):
 	def get(self):
-		acceptedRephraseRequests = RephraseRequest.query.filter(RephraseRequest.accepted).all()
-		return rephrase_requests_schema.dump(acceptedRephraseRequests)
+		acceptedRephraseLogs = RephraseLog.query.filter(RephraseLog.accepted).all()
+		return rephrase_logs_schema.dump(acceptedRephraseLogs)
 	
-class RephraseRequestResource(Resource):
+class RephraseLogResource(Resource):
 	def get(self, request_id):
-		new_request = RephraseRequest.query.get_or_404(request_id)
-		return rephrase_request_schema.dump(new_request)
+		new_log = RephraseLog.query.get_or_404(request_id)
+		return rephrase_log_schema.dump(new_log)
 
 	def patch(self, request_id):
-		rephrase_request = RephraseRequest.query.get_or_404(request_id)
+		rephrase_log = RephraseLog.query.get_or_404(request_id)
 
 		if 'rephrased' in request.json:
-			rephrase_request.rephrased = request.json['rephrased']
+			rephrase_log.rephrased = request.json['rephrased']
 		if 'original' in request.json:
-			rephrase_request.original = request.json['original']
+			rephrase_log.original = request.json['original']
 		if 'accepted' in request.json:
-			rephrase_request.accepted = request.json['accepted']
+			rephrase_log.accepted = request.json['accepted']
 
 		db.session.commit()
-		return rephrase_request_schema.dump(rephrase_request)
+		return rephrase_log_schema.dump(rephrase_log)
 
 	def delete(self, request_id):
-		rephrase_request = RephraseRequest.query.get_or_404(request_id)
-		db.session.delete(rephrase_request)
+		rephrase_log = RephraseLog.query.get_or_404(request_id)
+		db.session.delete(rephrase_log)
 		db.session.commit()
 		return '', 204
 
 class NewRephraseRequest(Resource):
 	def post(self):
 		message = request.json['message']
-		a = AcceptedRephraseRequestListResource()
+		a = AcceptedRephraseLogListResource()
 		accepted = a.get()
 		result = gpt3Rephrase(message, accepted)
-		print(result)
-		return result
+		new_rephrase_request = RephraseRequest(
+			original=message,
+			rephrased=result
+		)
+		return rephrase_request_schema.dump(new_rephrase_request)
 
 api.add_resource(NewRephraseRequest, '/rephrase')
-api.add_resource(AcceptedRephraseRequestListResource, '/rephrase-requests/accepted')
-api.add_resource(RephraseRequestListResource, '/rephrase-requests')
-api.add_resource(RephraseRequestResource, '/rephrase-requests/<int:request_id>')
+api.add_resource(AcceptedRephraseLogListResource, '/rephrase-logs/accepted')
+api.add_resource(RephraseLogListResource, '/rephrase-logs')
+api.add_resource(RephraseLogResource, '/rephrase-logs/<int:request_id>')
 
 if __name__ == '__main__':
 	app.run(debug=True)
