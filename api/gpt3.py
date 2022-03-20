@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-#print("THIS IS THE PRINTED OUT VERSION OF THE API KEY: ")
-#print(openai.api_key)
 
 def gpt3Rephrase(message, acceptedValues): # these all will need changed parameters to message, AND acceptedMessages which is formatted correctly
   print("Accepted messages: ")
