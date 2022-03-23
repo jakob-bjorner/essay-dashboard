@@ -7,30 +7,21 @@ export default function Rephrase() {
 	const [output, showResult] = useState('');
 	const [input, setInput] = useState('');
 	const inputRef = useRef(null);
+	/*As long as there are changes being made on "Type something.. " text area,
+	setInput set what ever changes as the value  */
 	function handleChange(event) {
+		/*Listens to those changes and set changes as the value*/
 		setInput(event.target.value);
 	}
-	//function handleSubmit(event) {
-	//	alert(input);
-	//	console.log('hi')
-	//	getRephraseRequests().then((data) => {
-	//		console.log(data)
-	//	})
-	//	event.preventDefault();
-	//}
-
+	/*This function runs the moment you click on the arrow */
 	async function handleSubmit(event) {
-		// setOutput(input);
-		//console.log(input)
-		//alert(input);
-		console.log('hi')
-
-		//getRephraseRequests().then((data) => {
-		//	console.log(data)
-		//})
+		/*Awaits response from the backend. Response is in an object form */
 		const data = await rephraseSentence(input);
-		showResult(data);
-		console.log(data)
+		/*Show results extract the rephrased element of the object and displays it in the 
+		"Response .." text area */
+		showResult(data.rephrased);
+
+		/*Prevents textarea from reverting to their default value which is "" */
 		event.preventDefault();
 	}
 
