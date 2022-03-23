@@ -1,3 +1,3 @@
 cd api;
-source env/bin/activate;
+pip install requirement.txt;
 python app.py;
