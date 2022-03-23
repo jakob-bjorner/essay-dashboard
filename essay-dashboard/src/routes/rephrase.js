@@ -4,6 +4,7 @@ import React, { useState, setState, useRef, useEffect } from 'react';
 import {getRephraseRequests} from '../services/RephraseRequestService';
 
 export default function Rephrase() {
+	const [output, showResult] = useState('');
   	const [input, setInput] = useState('');
 	const inputRef = useRef(null);
   	function handleChange(event) {
