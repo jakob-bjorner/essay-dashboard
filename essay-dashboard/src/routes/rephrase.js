@@ -22,9 +22,9 @@ export default function Rephrase() {
 		console.log(input);
 	}, [input]);  
 
-//	function handleChange(event) {
-//		setInput(event.target.value);
-//	}
+	function handleChange(event) {
+    	setInput(event.target.value);
+  	}
 	async function handleSubmit(event) {
    // setOutput(input);
     //console.log(input)
@@ -45,8 +45,7 @@ export default function Rephrase() {
 						className="input"
 						placeholder="Type something..."
 						value = {input}
-						//onChange={handleChange}
-						onChange={(e) => setInput(e.target.value)}
+						onChange={handleChange}
 						align="left"
 					></textarea>
 				</form>
