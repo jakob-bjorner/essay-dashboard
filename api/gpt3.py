@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-#print("THIS IS THE PRINTED OUT VERSION OF THE API KEY: ")
-#print(openai.api_key)
 
 def gpt3Rephrase(message, acceptedValues): # these all will need changed parameters to message, AND acceptedMessages which is formatted correctly
   print("Accepted messages: ")
@@ -26,16 +24,15 @@ def gpt3Rephrase(message, acceptedValues): # these all will need changed paramet
   prompt = \
   f"""
   I am a sentence rephrasing bot. I will rephrase any sentence you give me.
-  The food is very good --> The food is superb.
+  The food is very good. --> The food is superb.
 
   What do you do? --> How do you like to spend your day?
 
   I really don't like that --> I actually oppose that.
 
   {acceptedMessages}
-
-
-  {message} --> """ # above message put {parsed_db}
+  {message} -->""" # above message put {parsed_db}
+  # return prompt # testing prompt correctness.
   response = openai.Completion.create(
     engine="text-davinci-001",
     prompt=prompt,
@@ -51,7 +48,7 @@ def gpt3Rephrase(message, acceptedValues): # these all will need changed paramet
 
   #print("type of data")
   response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
-  parsed_response = response_dict.text #this still has newlines in it. 
+  parsed_response = response_dict.text.strip() #this still has newlines in it. 
   parsed_response = parsed_response.replace("\n", "")
 
 
@@ -61,7 +58,8 @@ def gpt3SentenceCompletion(message): #honestly this should be renamed to "comman
 
   prompt = \
   f"""
-  {message}""" # above message put {parsed_db}
+  {message}""" # above message put {parsed_db} 
+  # this could be edited, to be more focused towards completing sentence for essays of a particular topic/question.
   response = openai.Completion.create(
     engine="text-davinci-001",
     prompt=prompt,
@@ -72,12 +70,13 @@ def gpt3SentenceCompletion(message): #honestly this should be renamed to "comman
     presence_penalty=0
   )
   response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
-  parsed_response = response_dict.text #this still has newlines in it. 
+  parsed_response = response_dict.text.strip() #this still has newlines in it. 
   parsed_response = parsed_response.replace("\n", "")
 
   return parsed_response
   
-def gpt3QA(message):
+def gpt3QA(message): 
+  """requires a single question."""
 
   qmark = "?"
   message = message.replace("?","")
@@ -104,8 +103,8 @@ def gpt3QA(message):
   Q: Where were the 1992 Olympics held?
   A: The 1992 Olympics were held in Barcelona, Spain.
 
-
-  Q: {message}?""" # above message put {parsed_db}
+  Q: {message}?
+  A:""" # above message put {parsed_db}
   response = openai.Completion.create(
     engine="text-davinci-001",
     prompt=prompt,
@@ -116,7 +115,7 @@ def gpt3QA(message):
     presence_penalty=0
   )
   response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
-  parsed_response = response_dict.text #this still has newlines in it. 
+  parsed_response = response_dict.text.strip() #this still has newlines in it. 
   parsed_response = parsed_response.replace("\n", "")
 
   return parsed_response
@@ -135,7 +134,7 @@ def gpt3StudyTools(message):
     presence_penalty=0
   )
   response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
-  parsed_response = response_dict.text #this still has newlines in it. 
+  parsed_response = response_dict.text.strip() #this still has newlines in it. 
   parsed_response = parsed_response.replace("\n", "")
 
   return parsed_response
@@ -154,7 +153,7 @@ def gpt3SummarizeForSecondGrader(message):
     presence_penalty=0
   )
   response_dict = response["choices"][0] # was a pain parsing this, save lines 38 and 39
-  parsed_response = response_dict.text #this still has newlines in it. 
+  parsed_response = response_dict.text.strip() #this still has newlines in it. 
   parsed_response = parsed_response.replace("\n", "")
 
   return parsed_response
@@ -168,8 +167,8 @@ def gpt3EssayOutline(text):
   top_p=1.0,
   frequency_penalty=0.0,
   presence_penalty=0.0
-)
-  return response.choices[0].text
+	)
+  return response.choices[0].text.strip()
 
 def gpt3GrammarCorrection(text):
   response = openai.Completion.create(
@@ -180,8 +179,8 @@ def gpt3GrammarCorrection(text):
   top_p=1.0,
   frequency_penalty=0.0,
   presence_penalty=0.0
-)
-  return response.choices[0].text
+	)
+  return response.choices[0].text.strip()
 
 
 if __name__ == "__main__":

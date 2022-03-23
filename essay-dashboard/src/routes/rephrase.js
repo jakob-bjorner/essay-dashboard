@@ -1,10 +1,25 @@
 import arrow from '../arrow.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
-import { getRephraseRequests } from '../services/RephraseRequestService';
+ 
+import {getRephraseRequests} from '../services/RephraseRequestService';
 
 export default function Rephrase() {
-  const [input, setInput] = useState('');
-  const [output, showResult] = useState('');
+  	const [input, setInput] = useState('');
+	const inputRef = useRef(null);
+  	function handleChange(event) {
+    	setInput(event.target.value);
+  	}
+	function handleSubmit(event) {
+    	alert(input);
+		console.log('hi')
+		getRephraseRequests().then((data) => {
+			console.log(data)
+		})
+		event.preventDefault();
+  	}
+	useEffect(() => {
+		console.log(input);
+	}, [input]);  
 
 //	function handleChange(event) {
 //		setInput(event.target.value);
