@@ -3,11 +3,8 @@ import React, { useState, setState, useRef, useEffect } from "react";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
-  // const variable_name_example = {data: "hello"};
-
   // create some const output variable for holding the state of the output text.
-  // const inputRef = useRef(null);
+  const inputRef = useRef(null);
   function handleChange(event) {
     setInput(event.target.value);
   }
@@ -19,10 +16,6 @@ export default function Home() {
 	// Once created you can call it from here and display the data to output text!
     event.preventDefault();
   }
-  function handelChangeOutput(event) {
-    setOutput(event.target.value);
-  }
-
   useEffect(() => {
     console.log(input);
   }, [input]);
@@ -30,13 +23,12 @@ export default function Home() {
     <div className="IObox">
       <form>
         <textarea
-          // ref={inputRef}
+          ref={inputRef}
           key="user_name_key"
           type="text"
           className="input"
           placeholder="Type something..."
           onChange={handleChange}
-          value={input}
           align="left"
         ></textarea>
       </form>
@@ -48,8 +40,6 @@ export default function Home() {
           type="text"
           className="output"
           placeholder="Response..."
-          onChange={handelChangeOutput}
-          value={output}
           // place the state here of the output, and be sure to put the same
           // handle change in here as well.
         ></textarea>
