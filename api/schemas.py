@@ -1,5 +1,5 @@
 from flask_marshmallow import Marshmallow
-from models import RephraseLog, RephraseRequest
+from models import *
 
 ma = Marshmallow()
 
@@ -12,3 +12,13 @@ class RephraseRequestSchema(ma.Schema):
 	class Meta:
 		fields = ["rephrased", "original"]
 		model = RephraseRequest
+
+class SentenceCompletionLogSchema(ma.Schema): #Change 4
+	class Meta:
+		fields = ("id", "original", "rephrased", "accepted")
+		model = SentenceCompletionLog
+
+class SentenceCompletionRequestSchema(ma.Schema):
+	class Meta:
+		fields = ["rephrased", "original"]
+		model = SentenceCompletion
