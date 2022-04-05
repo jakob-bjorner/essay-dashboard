@@ -2,7 +2,7 @@ from flask import request
 from schemas import *
 from models import *
 from flask_restful import Resource
-from gpt3 import gpt3Rephrase, gpt3SentenceCompletion
+from gpt3 import gpt3Rephrase, gpt3SentenceCompletion, gpt3EssayOutline
 
 rephrase_log_schema = RephraseLogSchema()
 rephrase_logs_schema = RephraseLogSchema(many=True)
@@ -10,6 +10,9 @@ rephrase_request_schema = RephraseRequestSchema()
 sentence_completion_log_schema = SentenceCompletionLogSchema()
 sentence_completion_logs_schema = SentenceCompletionLogSchema(many=True)
 sentence_completion_schema = SentenceCompletionRequestSchema()
+essay_outline_log_schema = EssayOutlineLogSchema()
+essay_outline_logs_schema = SentenceCompletionLogSchema(many = True)
+essay_outline_schema = EssayOutlineRequestSchema()
 
 class RephraseLogListResource(Resource):
 	def get(self):
@@ -41,6 +44,21 @@ class SentenceCompletionLogListResource(Resource):
 		db.session.commit()
 		return sentence_completion_log_schema.dump(new_log)
 
+class EssayOutlineLogListResource(Resource):
+	def get(self):
+		Essay_Outline_Logs = Sentence_Completion_Log.query.all()
+		return essay_outline_logs_schema.dump(Essay_Outline_Logs)
+
+	def post(self):
+		new_log = Essay_Outline_Log(
+			original=request.json['original'],
+			rephrased=request.json['rephrased'],
+			accepted=request.json['accepted']
+		)
+		db.session.add(new_log)
+		db.session.commit()
+		return essay_outline_log_schema.dump(new_log)
+
 class AcceptedRephraseLogListResource(Resource):
 	def get(self):
 		acceptedRephraseLogs = RephraseLog.query.filter(RephraseLog.accepted).all()
@@ -50,6 +68,11 @@ class AcceptedSentenceCompletionLogListResource(Resource):
 	def get(self):
 		acceptedSentenceCompletionLogs = SentenceCompletionLog.query.filter(SentenceCompletionLog.accepted).all()
 		return sentence_completion_logs_schema.dump(acceptedSentenceCompletionLogs)
+
+class AcceptedEssayOutlineLogListResource(Resource):
+	def get(self):
+		acceptedEssayOutlineLogs = EssayOutlineLog.query.filter(EssayOutlineLog.accepted).all()
+		return essay_outline_logs_schema.dump(acceptedEssayOutlineLogs)
 
 class RephraseLogResource(Resource):
 	def get(self, request_id):
@@ -84,11 +107,11 @@ class SentenceCompletionLogResource(Resource):
 		sentence_completion_log = SentenceCompletionLog.query.get_or_404(request_id)
 
 		if 'rephrased' in request.json:
-			rephrase_log.rephrased = request.json['rephrased']
+			sentence_completion_log.rephrased = request.json['rephrased']
 		if 'original' in request.json:
-			rephrase_log.original = request.json['original']
+			sentence_completion_log.original = request.json['original']
 		if 'accepted' in request.json:
-			rephrase_log.accepted = request.json['accepted']
+			sentence_completion_log.accepted = request.json['accepted']
 
 		db.session.commit()
 		return sentence_completion_log_schema.dump(rephrase_log)
@@ -96,6 +119,30 @@ class SentenceCompletionLogResource(Resource):
 	def delete(self, request_id):
 		sentence_completion_log = SentenceCompletionLog.query.get_or_404(request_id)
 		db.session.delete(sentence_completion_log)
+		db.session.commit()
+		return '', 204
+
+class EssayOutlineLogResource(Resource):
+	def get(self, request_id):
+		new_log = EssayOutlineLog.query.get_or_404(request_id)
+		return essay_outline_log_schema.dump(new_log)
+
+	def patch(self, request_id):
+		essay_outline_log = EssayOutlineLog.query.get_or_404(request_id)
+
+		if 'rephrased' in request.json:
+			essay_outline_log.rephrased = request.json['rephrased']
+		if 'original' in request.json:
+			essay_outline_log.original = request.json['original']
+		if 'accepted' in request.json:
+			essay_outline_log.accepted = request.json['accepted']
+
+		db.session.commit()
+		return essay_outline_log_schema.dump(rephrase_log)
+
+	def delete(self, request_id):
+		essay_outline_log = EssayOutlineLog.query.get_or_404(request_id)
+		db.session.delete(essay_outline_log)
 		db.session.commit()
 		return '', 204
 
@@ -126,6 +173,22 @@ class NewSentenceCompletionRequest(Resource):
 			rephrased=result
 		)
 		return sentence_completion_schema.dump(new_sentence_completion_request)
+
+	
+	def get(self):
+		return 'Success'
+
+class NewEssayOutlineRequest(Resource):
+	def post(self):
+		message = request.json['message']
+		a = AcceptedEssayOutlineLogListResource()
+		accepted = a.get()
+		result = gpt3EssayOutline(message, accepted)
+		new_essay_outline_request = EssayOutline(
+			original=message,
+			rephrased=result
+		)
+		return essay_outline_schema.dump(new_essay_outline_request)
 
 	
 	def get(self):

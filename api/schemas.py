@@ -22,3 +22,13 @@ class SentenceCompletionRequestSchema(ma.Schema):
 	class Meta:
 		fields = ["rephrased", "original"]
 		model = SentenceCompletion
+
+class EssayOutlineLogSchema(ma.Schema): #Change 4
+	class Meta:
+		fields = ("id", "original", "rephrased", "accepted")
+		model = EssayOutlineLog
+
+class EssayOutlineRequestSchema(ma.Schema):
+	class Meta:
+		fields = ["rephrased", "original"]
+		model = EssayOutline
