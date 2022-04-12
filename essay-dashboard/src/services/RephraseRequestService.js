@@ -1,5 +1,5 @@
 export const getRephraseRequests = async () => {
-  return fetch("http://localhost:5000/rephrase-logs")
+  return fetch("https://essai-api.herokuapp.com/rephrase-logs")
     .then((response) => {
       return response.json();
     })
@@ -10,7 +10,7 @@ export const getRephraseRequests = async () => {
 };
 
 export const rephraseSentence = async (message) => {
-  return fetch("http://localhost:5000/rephrase", {
+  return fetch("https://essai-api.herokuapp.com/rephrase", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
