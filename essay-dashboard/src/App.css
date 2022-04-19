@@ -293,7 +293,7 @@ body {
 }
 
 .output-btn:hover .copy-icon {
-	filter: invert(36%) sepia(0%) saturate(1760%) hue-rotate(144deg) brightness(112%) contrast(88%);
+	filter: invert(33%) sepia(9%) saturate(3%) hue-rotate(357deg) brightness(96%) contrast(96%);
 }
 
 
