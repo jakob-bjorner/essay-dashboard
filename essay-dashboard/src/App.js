@@ -1,5 +1,6 @@
 import './App.css';
 import arrow from './arrow.png';
+import logo from './essAI-logo.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
@@ -66,11 +67,13 @@ export default function App() {
 	}
 	return (
 		<div className="App">
-			<div className="essay-header">
-				<div className="title">
-					Essay Dashboard
-				</div>
-			</div>
+			<div className="header">
+        <div className="navbar">
+        <div className="logo-holder">
+			<img src={logo} className="logo" alt="logo"></img>
+		</div>
+        </div>
+    		</div>
 			<div className="box">
 				<Outlet/>
 				<div className="function-sidebar">

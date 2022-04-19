@@ -10,33 +10,45 @@ button {
 .closed-sidebar {
 	background-color: black;
 }
-.essay-header {
-	width: 100vw;
-	height: 60px;
-	background-color: #009ff9;
-	text-align: left;
-	color: white;
-	font-size: 25px;
-	font-weight: bold;
-	justify-content: center;
+.header {
+	z-index: 1;
+    padding: 20px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar {
+    flex: auto;
 	align-items: center;
 	display: flex;
-	z-index: 1;
-	position: absolute;
+    max-width: 80vw;
+    height: 50px;
+    background-color: white;
+	border: 3px solid #00C113;
+    padding: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+    border-radius: 15px;
 }
-.essay-header > .title {
-	margin-left: 20px;
-	margin-right: 20px;
+
+.logo-holder {
+	flex: flex-end;
+	height: 30px;
 }
-.title {
-	flex: auto;
+.logo {
+	width: 100px;
+}
+
+body {
+    overflow: hidden;
 }
 
 .box {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	height: 80vh;
 	width: 100vw;
 }
 
@@ -45,21 +57,37 @@ button {
 }
 .IObox {
 	width: 70vw;
-	padding: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 .function-sidebar {
 	width: 30vw;
-	height: 100vh;
-	background-color: white;
-	border-left: 3px solid rgb(179, 179, 179, 0.7);
-	padding: 50px;
+	height: 100%;
+	/* background-color: white; */
+	/* border-left: 3px solid rgb(179, 179, 179, 0.7); */
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	border-radius: 20px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
+	box-shadow: white 0px 2px 8px 0px;
+	transition: 0.25s ease-in-out;
+	/* border: 2px solid grey; */
+
+}
+
+.function-sidebar:hover {
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	transition: 0.25s ease-in-out;
+	/* border: 2px solid #00c514; */
 }
 
 .btn-holder {
@@ -91,16 +119,16 @@ button {
 }
 .function-btn:hover {
 	background-color: rgb(250, 250, 250);
-	border: 2px solid #009ff9;
+	border: 2px solid #00C113;
 	transition: 0.25s ease-in-out;
 	cursor: pointer;
 }
 .function-btn:hover > .heading {
-	color: #009ff9;
+	color: #00C113;
 	transition: 0.25s ease-in-out;
 }
 .function-btn:hover > .description {
-	color: #009ff9;
+	color: #00C113;
 	transition: 0.25s ease-in-out;
 }
 .active-function-btn {
@@ -115,24 +143,24 @@ button {
 	outline: none;
 	background-color: white;
 	transition: 0.25s ease-in-out;
-	border: 2px solid #009ff9;
+	border: 2px solid #00C113;
 }
 .active-function-btn:hover {
 	background-color: rgb(250, 250, 250);
 	transition: 0.25s ease-in-out;
 	cursor: pointer;
-	border: 2px solid #009ff9;
+	border: 2px solid #00C113;
 }
 .active-heading {
 	padding-bottom: 5px;
 	font-size: 18px;
 	font-weight: 600;
 	transition: 0.25s ease-in-out;
-	color: #009ff9;
+	color: #00C113;
 }
 .active-description {
 	font-size: 14px;
-	color: #009ff9;
+	color: #00C113;
 	transition: 0.4s ease-in-out;
 }
 
@@ -142,11 +170,12 @@ button {
 	transition: 0.4s ease-in-out;
 }
 
-.IObox > form > textarea {
+.IObox > form > textarea, .output-box {
 	resize: none;
 	font-size: 30px;
 	font-family: 'Open Sans';
 	outline: none;
+	text-align: left;
 	border: 2px solid rgb(143, 143, 143);
 	border-radius: 20px;
 	min-height: 70vh;
@@ -168,9 +197,21 @@ button {
 	transition: 0.5s ease-in-out;
 }
 
-.IObox > form > textarea:hover,
 .IObox > form > textarea:focus {
-	border: 2px solid rgb(74, 74, 74);
+	border: 2px solid #00c514;
+	transition: 0.5s ease-in-out;
+}
+.IObox > form > textarea:hover {
+	border: 2px solid #00c514;
+	transition: 0.5s ease-in-out;
+}
+
+.text-rephrase-out > form > textarea:focus {
+	border: 2px solid #00c514;
+	transition: 0.5s ease-in-out;
+}
+.text-rephrase-out > form > textarea:hover {
+	border: 2px solid #00c514;
 	transition: 0.5s ease-in-out;
 }
 
@@ -180,16 +221,68 @@ button {
 	outline: none;
 	border: none;
 	transition: 0.2s ease-in-out;
-	border: 2px solid white;
+	border: 3px solid white;
 	background-color: white;
 }
 
 .IObox > button:hover {
-	border: 2px solid black;
+	border: 3px solid #00c514;
+	background-color: #00c514;
+	transition: 0.2s ease-in-out;
+}
+
+.IObox > button:hover .arrow {
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(103%) contrast(103%);
 	transition: 0.2s ease-in-out;
 }
 
 .arrow {
 	width: 2vw;
+	height: 2vw;
 	margin: 10px;
+	transition: 0.2s ease-in-out;
+}
+
+.output-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	/* background-color: rgb(247, 247, 247); */
+}
+
+.result {
+	min-height: 90%;
+	width: 100%;
+	text-align: left;
+}
+
+.bottom-bar {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 10%;
+	width: 100%;
+}
+
+.output-btn {
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: 0.25s ease-in-out;
+	border-radius: 5px;
+	border: none;
+	background-color: white;
+
+}
+
+.output-btn:hover {
+	background-color: rgb(205, 205, 205);
+	transition: 0.25s ease-in-out;
+	cursor: pointer;
+}
+
+.icon {
+	max-width: 2vw;
 }

@@ -1,4 +1,7 @@
-import arrow from '../arrow.png';
+import arrow from '../arrow.svg';
+import copy_icon from '../copy-icon.png';
+import like_btn from '../like-btn.png';
+import dislike_btn from '../dislike-btn.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
 
 import { rephraseSentence } from '../services/RephraseRequestService';
@@ -48,27 +51,14 @@ export default function Rephrase() {
 			<button onClick={handleSubmit}>
 				<img src={arrow} className="arrow" alt="arrow"></img>
 			</button>
-			<div className="text-rephrase-out">
-				<form>
-					<textarea
-						type="text"
-						className="output"
-						placeholder="Response..."
-						value={output}
-						onChange={(e) => showResult(e.target.value)}
-					></textarea>
-					<textarea
-						type="text"
-						className="output"
-						placeholder="Response..."
-					></textarea>
-					<textarea
-						type="text"
-						className="output"
-						placeholder="Response..."
-					></textarea>
-				</form>
-			</div>
+			<div className="output-box">
+				<div className="result">{output}</div>
+				<div className="bottom-bar">
+					<button className="output-btn like-btn"><img className="icon" src={like_btn}/></button>
+					<button className="output-btn dislike-btn"><img className="icon" src={dislike_btn} onClick={handleSubmit}/></button>
+					<button className="output-btn copy-btn" onClick={() => {navigator.clipboard.writeText(output)}}><img className="icon copy-icon" src={copy_icon}/></button>
+					</div>
+				</div>
 		</div>
 
 	);
