@@ -80,24 +80,23 @@ export default function App() {
 					<div className="btn-holder">
 						<SidebarButton
 							index={0}
-							heading="Rephrase sentences"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-								semper lobortis justo id laoreet."
+							heading="Rephrase sentence"
+							description="Type a sentence, and we'll give you another one with the same meaning."
 							path = 'rephrase'
 						/>
 						<SidebarButton
 							index={1}
-							heading="Summarize sentences"
+							heading="Complete sentence"
 							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
 								semper lobortis justo id laoreet."
-							path = 'home'
+							path = 'complete'
 						/>
 						<SidebarButton
 							index={2}
 							heading="Create an outline"
 							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
 								semper lobortis justo id laoreet."
-							path = 'home'
+							path = 'outline'
 						/>
 					</div>
 				</div>

@@ -6,7 +6,7 @@ import React, { useState, setState, useRef, useEffect } from 'react';
 
 import { rephraseSentence } from '../services/RephraseRequestService';
 
-export default function Rephrase() {
+export default function Complete() {
 	const [output, showResult] = useState('');
 	const [input, setInput] = useState('');
 	const inputRef = useRef(null);
@@ -33,7 +33,6 @@ export default function Rephrase() {
 	}, [input]);
 
 	return (
-
 		<div className="IObox">
 			<form>
 				<textarea
@@ -42,7 +41,6 @@ export default function Rephrase() {
 					type="text"
 					className="input"
 					placeholder="Type something..."
-
 					onChange={handleChange}
 					value={input}
 					align="left"
@@ -56,10 +54,10 @@ export default function Rephrase() {
 				<div className="bottom-bar">
 					<button className="output-btn like-btn"><img className="icon" src={like_btn}/></button>
 					<button className="output-btn dislike-btn"><img className="icon" src={dislike_btn} onClick={handleSubmit}/></button>
-					<button className="output-btn copy-btn" onClick={() => {navigator.clipboard.writeText(output)}}><img className="icon copy-icon" src={copy_icon}/></button>
+					<button className="output-btn copy-btn" 
+                    onClick={() => {navigator.clipboard.writeText(output)}}><img className="icon copy-icon" src={copy_icon}/></button>
 				</div>
 			</div>
 		</div>
-
 	);
 }
