@@ -54,8 +54,8 @@ export default function Rephrase() {
 			<div className="output-box">
 				<div className="result">{output}</div>
 				<div className="bottom-bar">
-					<button className="output-btn like-btn"><img className="icon" src={like_btn}/></button>
-					<button className="output-btn dislike-btn"><img className="icon" src={dislike_btn} onClick={handleSubmit}/></button>
+					<button className="output-btn like-btn"><img className="icon like-icon" src={like_btn}/></button>
+					<button className="output-btn dislike-btn"><img className="icon dislike-icon" src={dislike_btn} onClick={handleSubmit}/></button>
 					<button className="output-btn copy-btn" onClick={() => {navigator.clipboard.writeText(output)}}><img className="icon copy-icon" src={copy_icon}/></button>
 					</div>
 				</div>
