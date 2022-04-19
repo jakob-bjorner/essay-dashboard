@@ -278,10 +278,25 @@ body {
 }
 
 .output-btn:hover {
-	background-color: rgb(205, 205, 205);
+	/* background-color: #eb4545; */
 	transition: 0.25s ease-in-out;
 	cursor: pointer;
+	
 }
+
+.output-btn:hover .like-icon {
+	filter: invert(52%) sepia(52%) saturate(2297%) hue-rotate(89deg) brightness(107%) contrast(117%);
+}
+
+.output-btn:hover .dislike-icon {
+	filter: invert(16%) sepia(46%) saturate(6022%) hue-rotate(352deg) brightness(101%) contrast(128%);
+}
+
+.output-btn:hover .copy-icon {
+	filter: invert(33%) sepia(9%) saturate(3%) hue-rotate(357deg) brightness(96%) contrast(96%);
+}
+
+
 
 .icon {
 	max-width: 2vw;
