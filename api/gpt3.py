@@ -54,12 +54,21 @@ def gpt3Rephrase(message, acceptedValues): # these all will need changed paramet
 
   return parsed_response
 
-def gpt3SentenceCompletion(message): #honestly this should be renamed to "commands or misc or something else"
-
+def gpt3SentenceCompletion(message, acceptedValues): #honestly this should be renamed to "commands or misc or something else"
+  acceptedMessages = ""
+  for i in range(len(acceptedValues)):
+    acceptedMessages += acceptedValues[i]['original']
+    acceptedMessages += " --> "
+    acceptedMessages += acceptedValues[i]['rephrased']
+    acceptedMessages += "\n"
   prompt = \
   f"""
+  I am a sentence completion bot and will complete any sentence you give me.
+  Here are some examples:
+  {acceptedMessages}
   {message}""" # above message put {parsed_db} 
   # this could be edited, to be more focused towards completing sentence for essays of a particular topic/question.
+  print("Prompt is", prompt)
   response = openai.Completion.create(
     engine="text-davinci-001",
     prompt=prompt,
@@ -158,10 +167,16 @@ def gpt3SummarizeForSecondGrader(message):
 
   return parsed_response
 
-def gpt3EssayOutline(text):
+def gpt3EssayOutline(text, acceptedValues):
+  acceptedMessages = ""
+  for i in range(len(acceptedValues)):
+    acceptedMessages += acceptedValues[i]['original']
+    acceptedMessages += " --> "
+    acceptedMessages += acceptedValues[i]['rephrased']
+    acceptedMessages += "\n"
   response = openai.Completion.create(
   engine="text-davinci-001",
-  prompt=f"I am a highly intelligent bot that creates a formal essay outline:\n\n '{text}'", 
+  prompt=f"I am a highly intelligent bot that creates a formal essay outline:\n\n '{text}' \n {acceptedMessages}", 
   temperature=0,
   max_tokens=64,
   top_p=1.0,
