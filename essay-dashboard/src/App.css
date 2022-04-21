@@ -274,6 +274,7 @@ body {
 	border-radius: 5px;
 	border: none;
 	background-color: white;
+	transition: 0.25s ease-in-out;
 
 }
 
@@ -282,6 +283,10 @@ body {
 	transition: 0.25s ease-in-out;
 	cursor: pointer;
 	
+}
+
+.copy-icon {
+	filter: invert(25%) sepia(2%) saturate(0%) hue-rotate(7deg) brightness(93%) contrast(82%);
 }
 
 .output-btn:hover .like-icon {
@@ -293,11 +298,16 @@ body {
 }
 
 .output-btn:hover .copy-icon {
-	filter: invert(33%) sepia(9%) saturate(3%) hue-rotate(357deg) brightness(96%) contrast(96%);
+	filter: invert(0%) sepia(4%) saturate(7483%) hue-rotate(253deg) brightness(97%) contrast(104%);
 }
 
 
 
 .icon {
 	max-width: 2vw;
+}
+
+.loading-animation {
+	flex: auto;
+	width: 50%;
 }
