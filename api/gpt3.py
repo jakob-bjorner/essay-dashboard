@@ -61,12 +61,18 @@ def gpt3SentenceCompletion(message, acceptedValues): #honestly this should be re
     acceptedMessages += " --> "
     acceptedMessages += acceptedValues[i]['rephrased']
     acceptedMessages += "\n"
+  
+  token = len(message) - 1
+  while (message[token] == " "):
+    token = token - 1
+  message = message[:token + 1]
+  message = message + " "
   prompt = \
   f"""
   I am a sentence completion bot and will complete any sentence you give me.
   Here are some examples:
   {acceptedMessages}
-  {message}""" # above message put {parsed_db} 
+  {message} -->""" # above message put {parsed_db} 
   # this could be edited, to be more focused towards completing sentence for essays of a particular topic/question.
   print("Prompt is", prompt)
   response = openai.Completion.create(
