@@ -67,16 +67,16 @@ export default function App() {
 	}
 	return (
 		<div className="App">
-			<div className="header">
+			{/* <div className="header">
         <div className="navbar">
         <div className="logo-holder">
 			<img src={logo} className="logo" alt="logo"></img>
 		</div>
         </div>
-    		</div>
+    		</div> */}
 			<div className="box">
-				<Outlet/>
 				<div className="function-sidebar">
+					<img src={logo} className="logo" alt="logo"></img>
 					<div className="btn-holder">
 						<SidebarButton
 							index={0}
@@ -99,6 +99,7 @@ export default function App() {
 						/>
 					</div>
 				</div>
+				<Outlet/>
 			</div>
 		</div>
 	);
