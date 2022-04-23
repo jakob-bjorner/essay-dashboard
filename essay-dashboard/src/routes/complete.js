@@ -5,6 +5,7 @@ import dislike_btn from '../dislike-btn.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
 
 import { rephraseSentence } from '../services/RephraseRequestService';
+import { completeSentence } from '../services/SentenceCompletionService';
 
 export default function Complete() {
 	const [output, showResult] = useState('');
@@ -19,7 +20,7 @@ export default function Complete() {
 	/*This function runs the moment you click on the arrow */
 	async function handleSubmit(event) {
 		/*Awaits response from the backend. Response is in an object form */
-		const data = await rephraseSentence(input);
+		const data = await completeSentence(input);
 		/*Show results extract the rephrased element of the object and displays it in the 
 		"Response .." text area */
 		showResult(data.rephrased);
