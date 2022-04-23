@@ -4,7 +4,6 @@ import like_btn from '../like-btn.png';
 import dislike_btn from '../dislike-btn.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
 
-import { rephraseSentence } from '../services/RephraseRequestService';
 import { completeSentence } from '../services/SentenceCompletionService';
 
 export default function Complete() {
