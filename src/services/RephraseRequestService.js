@@ -31,7 +31,7 @@ export const postRephraseLogs = async (original, rephrased, accepted) => {
 };
 
 export const rephraseSentence = async (message) => {
-  return fetch("https://essai-api.herokuapp.com/rephrase", {
+  return fetch("https://stormy-brushlands-33433.herokuapp.com/rephrase", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
