@@ -1,5 +1,5 @@
 export const getRephraseLogs = async () => {
-  return fetch("https://essai-api.herokuapp.com/rephrase-logs")
+  return fetch("https://stormy-brushlands-33433.herokuapp.com//rephrase-logs")
     .then((response) => {
       return response.json();
     })
@@ -10,7 +10,7 @@ export const getRephraseLogs = async () => {
 };
 
 export const postRephraseLogs = async (original, rephrased, accepted) => {
-  return fetch("https://essai-api.herokuapp.com/rephrase-logs", {
+  return fetch("https://stormy-brushlands-33433.herokuapp.com//rephrase-logs", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
