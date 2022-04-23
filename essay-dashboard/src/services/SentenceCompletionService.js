@@ -24,6 +24,7 @@ export const completeSentence = async (message) => {
       }),
     }
   )
+
     .then((response) => {
       return response.json();
     })
