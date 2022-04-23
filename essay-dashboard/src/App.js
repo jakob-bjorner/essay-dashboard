@@ -1,5 +1,6 @@
 import './App.css';
 import arrow from './arrow.png';
+import logo from './essAI-logo.png';
 import React, { useState, setState, useRef, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
@@ -66,38 +67,39 @@ export default function App() {
 	}
 	return (
 		<div className="App">
-			<div className="essay-header">
-				<div className="title">
-					Essay Dashboard
-				</div>
-			</div>
+			{/* <div className="header">
+        <div className="navbar">
+        <div className="logo-holder">
+			<img src={logo} className="logo" alt="logo"></img>
+		</div>
+        </div>
+    		</div> */}
 			<div className="box">
-				<Outlet/>
 				<div className="function-sidebar">
+					<img src={logo} className="logo" alt="logo"></img>
 					<div className="btn-holder">
 						<SidebarButton
 							index={0}
-							heading="Rephrase sentences"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-								semper lobortis justo id laoreet."
+							heading="Rephrase a sentence"
+							description="Type a sentence, and we'll give you another one with the same meaning."
 							path = 'rephrase'
 						/>
 						<SidebarButton
 							index={1}
-							heading="Summarize sentences"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-								semper lobortis justo id laoreet."
-							path = 'home'
+							heading="Complete a sentence"
+							description="Type a sentence, and we'll finish it for you based on the information you provided."
+							path = 'complete'
 						/>
 						<SidebarButton
 							index={2}
 							heading="Create an outline"
 							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
 								semper lobortis justo id laoreet."
-							path = 'home'
+							path = 'outline'
 						/>
 					</div>
 				</div>
+				<Outlet/>
 			</div>
 		</div>
 	);
