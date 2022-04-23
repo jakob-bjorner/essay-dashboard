@@ -1,5 +1,7 @@
 export const getEssayOutlines = async () => {
-  return fetch("http://localhost:5000/essay-outline-logs/accepted")
+  return fetch(
+    "https://stormy-brushlands-33433.herokuapp.com//essay-outline-logs/accepted"
+  )
     .then((response) => {
       return response.json();
     })
@@ -10,7 +12,7 @@ export const getEssayOutlines = async () => {
 };
 
 export const essayOutline = async (message) => {
-  return fetch("http://localhost:5000/essay-outline", {
+  return fetch("https://stormy-brushlands-33433.herokuapp.com//essay-outline", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
