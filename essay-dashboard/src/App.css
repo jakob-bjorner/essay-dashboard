@@ -326,7 +326,7 @@ body {
 	margin: 25px;
 	outline: none;
 	border: none;
-	/* -webkit-transition: 0.2s ease-in-out; */
+	/* transition: 0.2s ease-in-out; */
 	border: 3px solid white;
 	background-color: white;
 	border-radius: 50%;
@@ -341,25 +341,25 @@ body {
 .IObox > button:hover {
 	border: 3px solid #00c514;
 	background-color: #00c514;
-	-webkit-transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 
 .IObox > button:hover .arrow {
 	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
 		brightness(103%) contrast(103%);
-	-webkit-transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 
 .dark-IObox > button:hover .dark-arrow {
 	filter: invert(0%) sepia(97%) saturate(11%) hue-rotate(341deg) brightness(99%)
 		contrast(100%);
-	-webkit-transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 
 .dark-arrow {
 	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
 		brightness(103%) contrast(103%);
-	/* -webkit-transition: 0.2s ease-in-out; */
+	/* transition: 0.2s ease-in-out; */
 }
 
 .dark-IObox > button {
@@ -381,13 +381,13 @@ body {
 .dark-IObox > button:hover {
 	border: 3px solid #00c514;
 	background-color: #00c514;
-	-webkit-transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 
 .dark-IObox > button:hover .arrow {
 	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
 		brightness(103%) contrast(103%);
-	-webkit-transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 
 .arrow,
