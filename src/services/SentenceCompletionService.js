@@ -11,6 +11,34 @@ export const getSentenceCompletions = async () => {
     });
 };
 
+export const postSentenceCompletions = async (
+  original,
+  rephrased,
+  accepted
+) => {
+  return fetch(
+    "https://stormy-brushlands-33433.herokuapp.com/sentence-completion-logs/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        original,
+        rephrased,
+        accepted,
+      }),
+    }
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.log(error);
+      return [];
+    });
+};
+
 export const completeSentence = async (message) => {
   return fetch(
     "https://stormy-brushlands-33433.herokuapp.com//sentence-complete",
@@ -24,7 +52,6 @@ export const completeSentence = async (message) => {
       }),
     }
   )
-
     .then((response) => {
       return response.json();
     })

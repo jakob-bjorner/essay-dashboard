@@ -11,6 +11,30 @@ export const getEssayOutlines = async () => {
     });
 };
 
+export const postEssayOutlines = async (original, rephrased, accepted) => {
+  return fetch(
+    "https://stormy-brushlands-33433.herokuapp.com/essay-outline-logs/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        original,
+        rephrased,
+        accepted,
+      }),
+    }
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.log(error);
+      return [];
+    });
+};
+
 export const essayOutline = async (message) => {
   return fetch("https://stormy-brushlands-33433.herokuapp.com//essay-outline", {
     method: "POST",
