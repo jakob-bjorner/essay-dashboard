@@ -1,5 +1,5 @@
 export const getRephraseLogs = async () => {
-  return fetch("https://stormy-brushlands-33433.herokuapp.com//rephrase-logs")
+  return fetch("https://stormy-brushlands-33433.herokuapp.com/rephrase-logs/")
     .then((response) => {
       return response.json();
     })
