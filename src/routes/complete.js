@@ -2,8 +2,6 @@ import arrow from '../arrow.svg';
 import copy_icon from '../copy-icon.png';
 import like_btn from '../like-btn.png';
 import dislike_btn from '../dislike-btn.png';
-import React, { useState, setState, useRef, useEffect } from 'react';
-
 import { rephraseSentence } from '../services/RephraseRequestService';
 import { completeSentence } from '../services/SentenceCompletionService';
 import React, {
@@ -14,7 +12,6 @@ import React, {
 	useContext,
 } from 'react';
 import Rive from 'rive-react';
-import { rephraseSentence } from '../services/RephraseRequestService';
 import { ModeContext } from '../ModeContext.js';
 
 function OutputBox(props) {
