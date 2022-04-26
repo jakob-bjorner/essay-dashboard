@@ -12,38 +12,40 @@ button {
 }
 .header {
 	z-index: 1;
-    padding: 20px;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	padding: 20px;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .navbar {
-    flex: auto;
+	flex: auto;
 	align-items: center;
 	display: flex;
-    max-width: 80vw;
-    height: 50px;
-    background-color: white;
-	border: 3px solid #00C113;
-    padding: 10px;
+	max-width: 80vw;
+	height: 50px;
+	background-color: white;
+	border: 3px solid #00c113;
+	padding: 10px;
 	padding-left: 30px;
 	padding-right: 30px;
-    border-radius: 15px;
+	border-radius: 15px;
 }
 
 .logo-holder {
 	flex: flex-end;
-	height: 30px;
+	min-height: 110px;
 }
-.logo {
+.logo,
+.dark-logo {
 	width: 200px;
+	max-height: 100px;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
 body {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .box {
@@ -54,10 +56,20 @@ body {
 	width: 100vw;
 }
 
+.dark-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+	background-color: black;
+}
+
 .box > * {
 	flex: auto;
 }
-.IObox {
+.IObox,
+.dark-IObox {
 	width: 70vw;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -66,11 +78,10 @@ body {
 	align-items: center;
 	justify-content: center;
 }
-.function-sidebar {
+.function-sidebar,
+.dark-function-sidebar {
 	width: 30vw;
 	height: 95%;
-	/* background-color: white; */
-	/* border-left: 3px solid rgb(179, 179, 179, 0.7); */
 	margin-left: 20px;
 	margin-right: 20px;
 	padding-left: 30px;
@@ -82,16 +93,15 @@ body {
 	justify-content: space-evenly;
 	box-shadow: white 0px 2px 8px 0px;
 	transition: 0.25s ease-in-out;
-	/* border: 2px solid grey; */
-
 }
 
 .function-sidebar:hover {
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 	transition: 0.25s ease-in-out;
-	/* border: 2px solid #00c514; */
 }
-
+.dark-function-sidebar {
+	box-shadow: none;
+}
 .btn-holder {
 	height: 80vh;
 	display: flex;
@@ -99,7 +109,10 @@ body {
 	align-items: center;
 	justify-content: center;
 }
-.function-btn > .heading {
+
+/* ----------------------- */
+
+.heading {
 	padding-bottom: 5px;
 	font-size: 18px;
 	font-weight: 600;
@@ -122,16 +135,16 @@ body {
 }
 .function-btn:hover {
 	background-color: rgb(250, 250, 250);
-	border: 2px solid #00C113;
+	border: 2px solid #00c113;
 	transition: 0.25s ease-in-out;
 	cursor: pointer;
 }
 .function-btn:hover > .heading {
-	color: #00C113;
+	color: #00c113;
 	transition: 0.25s ease-in-out;
 }
 .function-btn:hover > .description {
-	color: #00C113;
+	color: #00c113;
 	transition: 0.25s ease-in-out;
 }
 .active-function-btn {
@@ -146,36 +159,116 @@ body {
 	outline: none;
 	background-color: white;
 	transition: 0.25s ease-in-out;
-	border: 2px solid #00C113;
+	border: 2px solid #00c113;
 	min-height: 20vh;
-
 }
 .active-function-btn:hover {
 	background-color: rgb(250, 250, 250);
 	transition: 0.25s ease-in-out;
 	cursor: pointer;
-	border: 2px solid #00C113;
+	border: 2px solid #00c113;
 }
 .active-heading {
 	padding-bottom: 5px;
 	font-size: 18px;
 	font-weight: 600;
 	transition: 0.25s ease-in-out;
-	color: #00C113;
+	color: #00c113;
 }
 .active-description {
 	font-size: 14px;
-	color: #00C113;
+	color: #00c113;
 	transition: 0.4s ease-in-out;
 }
 
-.function-btn > .description {
+.description {
 	font-size: 14px;
 	color: rgb(74, 74, 74);
 	transition: 0.4s ease-in-out;
 }
 
-.IObox > form > textarea, .output-box {
+/* -------------------- */
+
+.dark-function-btn {
+	flex: auto;
+	font-family: 'Open Sans';
+	margin-top: 25px;
+	margin-bottom: 25px;
+	font-size: 20px;
+	text-align: left;
+	padding: 20px;
+	border-radius: 20px;
+	outline: none;
+	border: 2px solid gray;
+	background-color: black;
+	transition: 0.25s ease-in-out;
+	min-height: 20vh;
+}
+.dark-function-btn:hover {
+	background-color: black;
+	border: 2px solid #00c113;
+	transition: 0.25s ease-in-out;
+	cursor: pointer;
+}
+.dark-function-btn:hover > .dark-heading {
+	color: #00c113;
+	transition: 0.25s ease-in-out;
+}
+.dark-function-btn:hover > .dark-description {
+	color: #00c113;
+	transition: 0.25s ease-in-out;
+}
+.active-dark-function-btn {
+	flex: auto;
+	font-family: 'Open Sans';
+	margin-top: 25px;
+	margin-bottom: 25px;
+	font-size: 20px;
+	text-align: left;
+	padding: 20px;
+	border-radius: 20px;
+	outline: none;
+	background-color: black;
+	transition: 0.25s ease-in-out;
+	border: 2px solid #00c113;
+	min-height: 20vh;
+}
+.active-dark-function-btn:hover {
+	background-color: black;
+	transition: 0.25s ease-in-out;
+	cursor: pointer;
+	border: 2px solid #00c113;
+}
+.active-dark-heading {
+	padding-bottom: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	transition: 0.25s ease-in-out;
+	color: #00c113;
+}
+.active-dark-description {
+	font-size: 14px;
+	color: #00c113;
+	transition: 0.4s ease-in-out;
+}
+.dark-heading {
+	padding-bottom: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	transition: 0.25s ease-in-out;
+	color: white;
+}
+.dark-description {
+	font-size: 14px;
+	color: rgb(74, 74, 74);
+	transition: 0.4s ease-in-out;
+	color: white;
+}
+
+/* ----------------------- */
+
+.IObox > form > textarea,
+.output-box {
 	resize: none;
 	font-size: 30px;
 	font-family: 'Open Sans';
@@ -186,7 +279,23 @@ body {
 	min-height: 82.5vh;
 	min-width: 27.5vw;
 	padding: 20px;
-	transition: 0.5s ease-in-out;
+	/* transition: 0.5s ease-in-out; */
+}
+
+.dark-IObox > form > textarea,
+.dark-output-box {
+	resize: none;
+	font-size: 30px;
+	font-family: 'Open Sans';
+	outline: none;
+	text-align: left;
+	border: 2px solid rgb(143, 143, 143);
+	border-radius: 20px;
+	min-height: 82.5vh;
+	min-width: 27.5vw;
+	padding: 20px;
+	background-color: black;
+	color: white;
 }
 
 .text-rephrase-out > form > textarea {
@@ -202,20 +311,13 @@ body {
 	transition: 0.5s ease-in-out;
 }
 
-.IObox > form > textarea:focus {
+.IObox > form > textarea:focus,
+.dark-IObox > form > textarea:focus {
 	border: 2px solid #00c514;
 	transition: 0.5s ease-in-out;
 }
-.IObox > form > textarea:hover {
-	border: 2px solid #00c514;
-	transition: 0.5s ease-in-out;
-}
-
-.text-rephrase-out > form > textarea:focus {
-	border: 2px solid #00c514;
-	transition: 0.5s ease-in-out;
-}
-.text-rephrase-out > form > textarea:hover {
+.IObox > form > textarea:hover,
+.dark-IObox > form > textarea:hover {
 	border: 2px solid #00c514;
 	transition: 0.5s ease-in-out;
 }
@@ -224,14 +326,14 @@ body {
 	margin: 25px;
 	outline: none;
 	border: none;
-	transition: 0.2s ease-in-out;
+	/* transition: 0.2s ease-in-out; */
 	border: 3px solid white;
 	background-color: white;
 	border-radius: 50%;
 	width: 60px;
 	height: 60px;
 	aspect-ratio: 1;
-  	display: flex;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 }
@@ -243,15 +345,57 @@ body {
 }
 
 .IObox > button:hover .arrow {
-	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(103%) contrast(103%);
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
+		brightness(103%) contrast(103%);
 	transition: 0.2s ease-in-out;
 }
 
-.arrow {
+.dark-IObox > button:hover .dark-arrow {
+	filter: invert(0%) sepia(97%) saturate(11%) hue-rotate(341deg) brightness(99%)
+		contrast(100%);
+	transition: 0.2s ease-in-out;
+}
+
+.dark-arrow {
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
+		brightness(103%) contrast(103%);
+	/* transition: 0.2s ease-in-out; */
+}
+
+.dark-IObox > button {
+	margin: 25px;
+	outline: none;
+	border: none;
+	/* transition: 0.2s ease-in-out; */
+	border: 3px solid black;
+	background-color: black;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dark-IObox > button:hover {
+	border: 3px solid #00c514;
+	background-color: #00c514;
+	transition: 0.2s ease-in-out;
+}
+
+.dark-IObox > button:hover .arrow {
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
+		brightness(103%) contrast(103%);
+	transition: 0.2s ease-in-out;
+}
+
+.arrow,
+.dark-arrow {
 	width: 2vw;
 	height: 2vw;
 	margin: 10px;
-	transition: 0.2s ease-in-out;
+	/* transition: 0.2s ease-in-out; */
 	flex: auto;
 }
 
@@ -261,6 +405,13 @@ body {
 	align-items: center;
 	flex-direction: column;
 	background-color: rgb(248, 248, 248);
+}
+
+.dark-output-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
 }
 
 .result {
@@ -282,38 +433,63 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: 0.25s ease-in-out;
+	transition: transform 0.25s ease-in-out;
 	border-radius: 5px;
 	border: none;
-	transition: 0.25s ease-in-out;
 	background-color: rgb(248, 248, 248);
+}
 
+.dark-output-btn {
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.25s ease-in-out;
+	border-radius: 5px;
+	border: none;
+	background-color: black;
 }
 
 .output-btn:hover {
-	/* background-color: #eb4545; */
 	transition: 0.25s ease-in-out;
 	cursor: pointer;
-	
 }
 
 .copy-icon {
-	filter: invert(25%) sepia(2%) saturate(0%) hue-rotate(7deg) brightness(93%) contrast(82%);
+	filter: invert(25%) sepia(2%) saturate(0%) hue-rotate(7deg) brightness(93%)
+		contrast(82%);
 }
 
-.output-btn:hover .like-icon {
-	filter: invert(52%) sepia(52%) saturate(2297%) hue-rotate(89deg) brightness(107%) contrast(117%);
+.dark-copy-icon {
+	filter: invert(79%) sepia(0%) saturate(699%) hue-rotate(146deg)
+		brightness(79%) contrast(81%);
 }
 
-.output-btn:hover .dislike-icon {
-	filter: invert(16%) sepia(46%) saturate(6022%) hue-rotate(352deg) brightness(101%) contrast(128%);
+.output-btn:hover .like-icon,
+.dark-output-btn:hover .like-icon {
+	transform: translate(0, -1.5px);
+	transition: 0.25s ease-in-out;
+}
+
+.output-btn:hover .dislike-icon,
+.dark-output-btn:hover .dislike-icon {
+	transform: translate(0, -1.5px);
+	transition: 0.2s ease-in-out;
 }
 
 .output-btn:hover .copy-icon {
-	filter: invert(0%) sepia(4%) saturate(7483%) hue-rotate(253deg) brightness(97%) contrast(104%);
+	transform: translate(0, -1.5px);
+	transition: 0.2s ease-in-out;
+	filter: invert(0%) sepia(4%) saturate(7483%) hue-rotate(253deg)
+		brightness(97%) contrast(104%);
 }
 
-
+.dark-output-btn:hover .dark-copy-icon {
+	transform: translate(0, -1.5px);
+	transition: 0.2s ease-in-out;
+	filter: invert(97%) sepia(1%) saturate(31%) hue-rotate(319deg) brightness(89%)
+		contrast(93%);
+}
 
 .icon {
 	max-width: 2vw;

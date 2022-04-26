@@ -2,16 +2,23 @@ import arrow from "../arrow.svg";
 import copy_icon from "../copy-icon.png";
 import like_btn from "../like-btn.png";
 import dislike_btn from "../dislike-btn.png";
-import React, { useState, setState, useRef, useEffect } from "react";
-import { useRive } from "rive-react";
+import React, {
+  useState,
+  setState,
+  useRef,
+  useEffect,
+  useContext,
+} from "react";
 import Rive from "rive-react";
-
 import {
   rephraseSentence,
   postRephraseLogs,
 } from "../services/RephraseRequestService";
+import { ModeContext } from "../ModeContext.js";
 
 function OutputBox(props) {
+  const { light, setMode } = useContext(ModeContext);
+
   const handleLike = async () => {
     sendLogs(true);
   };
@@ -19,11 +26,15 @@ function OutputBox(props) {
   const handleDislike = async () => {
     sendLogs(false);
     /*Tells the app that the response is loading... */
+
     props.setLoading(true);
+
     /*Awaits response from the backend. Response is in an object form */
     const data = await rephraseSentence(props.input);
     /*Tells the app that the response has been obtained */
+
     props.setLoading(false);
+
     /*Show results extract the rephrased element of the object and displays it in the 
 		"Response .." text area */
     props.showResult(data.rephrased);
@@ -35,22 +46,34 @@ function OutputBox(props) {
 
   if (props.loading) {
     return (
-      <div className="output-box">
+      <div className={light ? "output-box" : "dark-output-box"}>
         <Rive
           className="loading-animation"
           src="Loading-Animation.riv"
           animations="Loading"
         />
         <div className="bottom-bar">
-          <button className="output-btn like-btn">
+          <button
+            className={
+              light ? "output-btn like-btn" : "dark-output-btn like-btn"
+            }
+          >
             <img className="icon like-icon" src={like_btn} />
           </button>
-          <button className="output-btn dislike-btn">
+          <button
+            className={
+              light ? "output-btn dislike-btn" : "dark-output-btn dislike-btn"
+            }
+          >
             <img className="icon dislike-icon" src={dislike_btn} />
           </button>
-          <button className="output-btn copy-btn">
+          <button
+            className={
+              light ? "output-btn copy-btn" : "dark-output-btn copy-btn"
+            }
+          >
             <img
-              className="icon copy-icon"
+              className={light ? "icon copy-icon" : "icon dark-copy-icon"}
               src={copy_icon}
               onClick={() => {
                 navigator.clipboard.writeText(props.output);
@@ -62,18 +85,32 @@ function OutputBox(props) {
     );
   } else {
     return (
-      <div className="output-box">
+      <div className={light ? "output-box" : "dark-output-box"}>
         <div className="result">{props.output}</div>
         <div className="bottom-bar">
-          <button className="output-btn like-btn" onClick={handleLike}>
+          <button
+            className={
+              light ? "output-btn like-btn" : "dark-output-btn like-btn"
+            }
+            onClick={handleLike}
+          >
             <img className="icon like-icon" src={like_btn} />
           </button>
-          <button className="output-btn dislike-btn" onClick={handleDislike}>
+          <button
+            className={
+              light ? "output-btn dislike-btn" : "dark-output-btn dislike-btn"
+            }
+            onClick={handleDislike}
+          >
             <img className="icon dislike-icon" src={dislike_btn} />
           </button>
-          <button className="output-btn copy-btn">
+          <button
+            className={
+              light ? "output-btn copy-btn" : "dark-output-btn copy-btn"
+            }
+          >
             <img
-              className="icon copy-icon"
+              className={light ? "icon copy-icon" : "icon dark-copy-icon"}
               src={copy_icon}
               onClick={() => {
                 navigator.clipboard.writeText(props.output);
@@ -85,8 +122,8 @@ function OutputBox(props) {
     );
   }
 }
-
 export default function Rephrase() {
+  const { light, setMode } = useContext(ModeContext);
   const [output, showResult] = useState("");
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
@@ -113,17 +150,14 @@ export default function Rephrase() {
     /*Show results extract the rephrased element of the object and displays it in the 
 		"Response .." text area */
     showResult(data.rephrased);
-
-    /*Prevents textarea from reverting to their default value which is "" */
-    event.preventDefault();
   }
 
   useEffect(() => {
-    console.log(input);
-  }, [input]);
+    console.log("Rephrase: ", light);
+  }, [light]);
 
   return (
-    <div className="IObox">
+    <div className={light ? "IObox" : "dark-IObox"}>
       <form>
         <textarea
           ref={inputRef}
@@ -137,7 +171,11 @@ export default function Rephrase() {
         ></textarea>
       </form>
       <button onClick={handleSubmit}>
-        <img src={arrow} className="arrow" alt="arrow"></img>
+        <img
+          src={arrow}
+          className={light ? "arrow" : "dark-arrow"}
+          alt="arrow"
+        ></img>
       </button>
       <OutputBox
         output={output}

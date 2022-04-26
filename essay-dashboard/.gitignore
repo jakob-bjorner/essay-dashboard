@@ -1,9 +1,3 @@
-essay-env
-*.env
-*.DS_Store
-__pycache__
-*__pycache__
-*.env.local
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -28,4 +22,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-essay-dashboard/
