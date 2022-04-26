@@ -433,7 +433,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* transition: 0.25s ease-in-out; */
+	transition: transform 0.25s ease-in-out;
 	border-radius: 5px;
 	border: none;
 	background-color: rgb(248, 248, 248);
@@ -444,7 +444,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* transition: 0.25s ease-in-out; */
+	transition: transform 0.25s ease-in-out;
 	border-radius: 5px;
 	border: none;
 	background-color: black;
@@ -467,22 +467,26 @@ body {
 
 .output-btn:hover .like-icon,
 .dark-output-btn:hover .like-icon {
-	filter: invert(52%) sepia(52%) saturate(2297%) hue-rotate(89deg)
-		brightness(107%) contrast(117%);
+	transform: translate(0, -1.5px);
+	transition: 0.25s ease-in-out;
 }
 
 .output-btn:hover .dislike-icon,
 .dark-output-btn:hover .dislike-icon {
-	filter: invert(16%) sepia(46%) saturate(6022%) hue-rotate(352deg)
-		brightness(101%) contrast(128%);
+	transform: translate(0, -1.5px);
+	transition: 0.2s ease-in-out;
 }
 
 .output-btn:hover .copy-icon {
+	transform: translate(0, -1.5px);
+	transition: 0.2s ease-in-out;
 	filter: invert(0%) sepia(4%) saturate(7483%) hue-rotate(253deg)
 		brightness(97%) contrast(104%);
 }
 
 .dark-output-btn:hover .dark-copy-icon {
+	transform: translate(0, -1.5px);
+	transition: 0.2s ease-in-out;
 	filter: invert(97%) sepia(1%) saturate(31%) hue-rotate(319deg) brightness(89%)
 		contrast(93%);
 }
