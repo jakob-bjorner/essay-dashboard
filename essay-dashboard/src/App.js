@@ -10,6 +10,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default function App() {
 	let navigate = useNavigate();
+	useEffect(() => {
+		document.title = 'EssAI';
+	}, []);
 	const theme = createTheme({
 		status: {
 			danger: '#e53e3e',
