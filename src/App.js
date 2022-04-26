@@ -172,8 +172,7 @@ export default function App() {
 						<SidebarButton
 							index={2}
 							heading="Create an outline"
-							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-								semper lobortis justo id laoreet."
+							description="Type an essay, and we'll come up with a short outline on what the essay talks about."
 							path="outline"
 						/>
 					</div>
