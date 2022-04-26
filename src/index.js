@@ -20,6 +20,7 @@ function ParentApp() {
 			<ModeContext.Provider value={{ light, setMode }}>
 				<Routes>
 					<Route path="/" element={<App />}>
+						<Route path="" element={<Rephrase />} />
 						<Route path="rephrase" element={<Rephrase />} />
 						<Route path="complete" element={<Complete />} />
 						<Route path="outline" element={<Outline />} />
