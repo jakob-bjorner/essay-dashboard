@@ -1,5 +1,5 @@
 export const getRephraseLogs = async () => {
-  return fetch("https://stormy-brushlands-33433.herokuapp.com/rephrase-logs/")
+  return fetch("" + process.env.REACT_APP_API_URL + "/rephrase-logs/")
     .then((response) => {
       return response.json();
     })
@@ -10,7 +10,7 @@ export const getRephraseLogs = async () => {
 };
 
 export const postRephraseLogs = async (original, rephrased, accepted) => {
-  return fetch("https://stormy-brushlands-33433.herokuapp.com/rephrase-logs/", {
+  return fetch("" + process.env.REACT_APP_API_URL + "/rephrase-logs/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const postRephraseLogs = async (original, rephrased, accepted) => {
 };
 
 export const rephraseSentence = async (message) => {
-  return fetch("https://stormy-brushlands-33433.herokuapp.com/rephrase", {
+  return fetch("" + process.env.REACT_APP_API_URL + "/rephrase", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

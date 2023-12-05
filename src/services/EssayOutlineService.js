@@ -1,6 +1,6 @@
 export const getEssayOutlines = async () => {
   return fetch(
-    "https://stormy-brushlands-33433.herokuapp.com//essay-outline-logs/accepted"
+    "" + process.env.REACT_APP_API_URL + "/essay-outline-logs/accepted"
   )
     .then((response) => {
       return response.json();
@@ -13,7 +13,7 @@ export const getEssayOutlines = async () => {
 
 export const postEssayOutlines = async (original, rephrased, accepted) => {
   return fetch(
-    "https://stormy-brushlands-33433.herokuapp.com/essay-outline-logs/",
+    "" + process.env.REACT_APP_API_URL + "/essay-outline-logs/",
     {
       method: "POST",
       headers: {
@@ -36,7 +36,7 @@ export const postEssayOutlines = async (original, rephrased, accepted) => {
 };
 
 export const essayOutline = async (message) => {
-  return fetch("https://stormy-brushlands-33433.herokuapp.com//essay-outline", {
+  return fetch("" + process.env.REACT_APP_API_URL + "/essay-outline", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 export const getSentenceCompletions = async () => {
   return fetch(
-    "https://stormy-brushlands-33433.herokuapp.com//sentence-completion-logs/"
+    "" + process.env.REACT_APP_API_URL + "/sentence-completion-logs/"
   )
     .then((response) => {
       return response.json();
@@ -17,7 +17,7 @@ export const postSentenceCompletions = async (
   accepted
 ) => {
   return fetch(
-    "https://stormy-brushlands-33433.herokuapp.com/sentence-completion-logs/",
+    "" + process.env.REACT_APP_API_URL + "/sentence-completion-logs/",
     {
       method: "POST",
       headers: {
@@ -41,7 +41,7 @@ export const postSentenceCompletions = async (
 
 export const completeSentence = async (message) => {
   return fetch(
-    "https://stormy-brushlands-33433.herokuapp.com//sentence-complete",
+    "" + process.env.REACT_APP_API_URL + "/sentence-complete",
     {
       method: "POST",
       headers: {
